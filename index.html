@@ -18,12 +18,14 @@
     }
 
     :root {
-      /* Polaris One: Farben aus polaris.one und dem Call-to-Join-Deck */
+      /* Farben wie auf polaris.one (berechnete Styles), Violett nur fuer den CTA */
       --bg: #F2F2F2;
       --surface: #FFFFFF;
-      --tint: #DCE2E2;
-      --sage: #B5CBCA;
-      --purple: #7664A3;
+      --pill-bg: rgba(194, 210, 210, 0.5);
+      --pill-bg-solid: #E0E8E8;
+      --pill-bg-hover: rgba(194, 210, 210, 0.85);
+      --dot: #C2D2D2;
+      --violet: #7664A3;
       --ink: #212126;
       --ink-2: rgba(33, 33, 38, 0.76);
       --ink-3: rgba(33, 33, 38, 0.56);
@@ -32,7 +34,6 @@
       --r-s: 8px;
       --r-m: 12px;
       --r-l: 16px;
-      --pill: 999px;
 
       --max: 1280px;
       --gutter: clamp(16px, 5.5vw, 80px);
@@ -62,9 +63,9 @@
 
     a { color: inherit; }
     a:focus-visible, iframe:focus-visible {
-      outline: 2px solid var(--purple);
+      outline: 2px solid var(--ink);
       outline-offset: 3px;
-      border-radius: var(--pill);
+      border-radius: var(--r-m);
     }
 
     .wrap {
@@ -74,25 +75,25 @@
       padding: 0 var(--gutter);
     }
 
-    /* Pill-Buttons wie auf polaris.one */
+    /* Pill-Buttons wie auf polaris.one (dort 4px 20px, Radius 12px) */
     .btn {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      min-height: 52px;
-      padding: 0 28px;
-      border-radius: var(--pill);
-      background: var(--ink);
-      color: #fff;
+      min-height: 44px;
+      padding: 10px 24px;
+      border-radius: var(--r-m);
+      background: var(--pill-bg);
+      color: var(--ink);
       font-size: 1.0625rem;
-      line-height: 1;
+      line-height: 1.2;
       text-decoration: none;
-      transition: background-color 0.2s ease, transform 0.2s ease;
+      transition: background-color 0.2s ease;
     }
-    .btn:hover { background: var(--purple); transform: translateY(-1px); }
+    .btn:hover { background: var(--pill-bg-hover); }
 
     .section-title {
-      color: var(--purple);
+      color: var(--ink);
       font-size: clamp(1.75rem, 3vw, 2.625rem);
       line-height: 1.1;
       letter-spacing: -0.01em;
@@ -112,7 +113,7 @@
       align-items: flex-end;
       min-height: clamp(380px, 62vh, 640px);
       border-radius: var(--r-l);
-      background: #123A5A;
+      background: var(--ink);
     }
     .hero-tile picture,
     .hero-tile .hero-img {
@@ -166,7 +167,7 @@
       height: 10px;
       margin-top: 0.5em;
       border-radius: 50%;
-      background: var(--sage);
+      background: var(--dot);
     }
 
     /* ---------- Value ---------- */
@@ -187,9 +188,9 @@
     }
     .value-item h3 {
       align-self: flex-start;
-      padding: 8px 16px;
-      border-radius: var(--pill);
-      background: var(--sage);
+      padding: 6px 16px;
+      border-radius: var(--r-m);
+      background: var(--pill-bg);
       font-size: 1.0625rem;
       line-height: 1.3;
     }
@@ -224,7 +225,7 @@
       height: 10px;
       margin-top: 0.5em;
       border-radius: 50%;
-      background: var(--purple);
+      background: var(--dot);
     }
     .video-tile {
       padding: 12px;
@@ -234,9 +235,9 @@
     .video-tile strong {
       display: inline-block;
       margin: 4px 0 12px 4px;
-      padding: 6px 14px;
-      border-radius: var(--pill);
-      background: var(--tint);
+      padding: 4px 16px;
+      border-radius: var(--r-m);
+      background: var(--pill-bg);
       font-size: 0.875rem;
     }
     .video-tile iframe {
@@ -246,35 +247,24 @@
       aspect-ratio: 16 / 9;
       border: 0;
       border-radius: var(--r-s);
-      background: var(--tint);
+      background: var(--pill-bg-solid);
     }
 
     /* ---------- About ---------- */
     .about { padding-top: var(--section); }
-    .about-grid {
+    .about-card {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 16px;
-    }
-    .about-text {
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-      padding: clamp(24px, 3.5vw, 48px);
+      align-items: center;
+      gap: clamp(32px, 6vw, 96px);
+      padding: clamp(24px, 4.5vw, 64px);
       border-radius: var(--r-l);
       background: var(--surface);
     }
+    .about-text { display: flex; flex-direction: column; gap: 16px; }
     .about-text h2 { margin-bottom: 8px; }
     .about-text p { color: var(--ink-2); }
-    .about-logo {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: clamp(24px, 4vw, 56px);
-      border-radius: var(--r-l);
-      background: var(--surface);
-    }
-    .about-logo img { width: 100%; max-width: 520px; height: auto; }
+    .about-logo img { width: 100%; max-width: 520px; height: auto; margin: 0 auto; }
 
     /* ---------- CTA ---------- */
     .cta { padding: var(--section) 0; }
@@ -285,7 +275,8 @@
       gap: 20px;
       padding: clamp(48px, 7vw, 104px) clamp(24px, 4vw, 64px);
       border-radius: var(--r-l);
-      background: var(--sage);
+      background: var(--violet);
+      color: #fff;
       text-align: center;
     }
     .cta-tile h2 {
@@ -294,33 +285,27 @@
       line-height: 1.08;
       letter-spacing: -0.015em;
     }
-    .cta-tile p { max-width: 560px; color: var(--ink-2); }
-    .cta-tile .btn { margin-top: 12px; }
+    .cta-tile p { max-width: 560px; color: rgba(255, 255, 255, 0.88); }
+    .cta-tile .btn { margin-top: 12px; background: var(--pill-bg-solid); }
+    .cta-tile .btn:hover { background: #fff; }
 
-    /* ---------- Footer ---------- */
-    footer { padding: 0 0 40px; }
-    .footer-inner { border-top: 1px solid var(--line); }
+    /* ---------- Footer (wie polaris.one: Zeile aus Copyright + Pill-Links) ---------- */
+    footer { padding: 0 0 48px; }
+    .footer-note { margin-bottom: 20px; }
     .footer-row {
       display: flex;
       flex-wrap: wrap;
-      align-items: flex-end;
-      justify-content: space-between;
-      gap: 24px;
-      padding-top: 28px;
-      font-size: 0.875rem;
+      align-items: center;
+      gap: 12px 24px;
     }
-    .footer-copy { max-width: 60ch; color: var(--ink-2); }
-    .footer-legal { display: flex; flex-direction: column; align-items: flex-end; gap: 12px; }
-    .footer-links { display: flex; flex-wrap: wrap; gap: 8px; margin: 0; }
-    .footer-links a {
-      padding: 6px 14px;
-      border-radius: var(--pill);
-      background: var(--tint);
+    .footer-row a {
+      padding: 4px 20px;
+      border-radius: var(--r-m);
+      background: var(--pill-bg);
       text-decoration: none;
       transition: background-color 0.2s ease;
     }
-    .footer-links a:hover { background: var(--sage); }
-    .footer-legal p:last-child { color: var(--ink-3); }
+    .footer-row a:hover { background: var(--pill-bg-hover); }
 
     /* ---------- Responsive ---------- */
     @media (max-width: 1080px) {
@@ -329,8 +314,7 @@
     @media (max-width: 860px) {
       .hero-body,
       .collab-grid,
-      .about-grid { grid-template-columns: 1fr; }
-      .footer-legal { align-items: flex-start; }
+      .about-card { grid-template-columns: 1fr; }
     }
     @media (max-width: 560px) {
       .site-header img { height: 52px; }
@@ -338,8 +322,7 @@
       .btn { width: 100%; }
     }
     @media (prefers-reduced-motion: reduce) {
-      .btn, .footer-links a { transition: none; }
-      .btn:hover { transform: none; }
+      .btn, .footer-row a { transition: none; }
     }
   </style>
 </head>
@@ -434,18 +417,20 @@
 
     <!-- ABOUT -->
     <section class="about">
-      <div class="wrap about-grid">
-        <div class="about-text">
-          <h2 class="section-title">About Polaris School of Quantum</h2>
-          <p>
-            Polaris School of Quantum is the educational YouTube channel of Polaris One (part of Polarstern Education GmbH, a spin-off of RWTH Aachen University). We specialise in making quantum technologies accessible through carefully produced, didactic video content.
-          </p>
-          <p>
-            Our work builds on experience in digital learning and science communication, including educational initiatives such as the <em>Hidden Quantum Champions</em> series and various projects in open education and quantum technology training.
-          </p>
-        </div>
-        <div class="about-logo">
-          <img src="assets/polaris-logo.webp" alt="" width="940" height="529" loading="lazy" />
+      <div class="wrap">
+        <div class="about-card">
+          <div class="about-text">
+            <h2 class="section-title">About Polaris School of Quantum</h2>
+            <p>
+              Polaris School of Quantum is the educational YouTube channel of Polaris One (part of Polarstern Education GmbH, a spin-off of RWTH Aachen University). We specialise in making quantum technologies accessible through carefully produced, didactic video content.
+            </p>
+            <p>
+              Our work builds on experience in digital learning and science communication, including educational initiatives such as the <em>Hidden Quantum Champions</em> series and various projects in open education and quantum technology training.
+            </p>
+          </div>
+          <div class="about-logo">
+            <img src="assets/polaris-logo.webp" alt="" width="940" height="529" loading="lazy" />
+          </div>
         </div>
       </div>
     </section>
@@ -469,17 +454,15 @@
 
   <footer>
     <div class="wrap">
-      <div class="footer-inner footer-row">
-        <p class="footer-copy">
-          Polaris School of Quantum is operated by Polaris One / Polarstern Education GmbH.<br>
-          We look forward to exploring collaboration opportunities with quantum technology partners.
-        </p>
-        <div class="footer-legal">
-          <p class="footer-links">
-            <a href="https://www.polaris.one/imprint">Terms</a> <a href="https://www.polaris.one/imprint">Privacy Policy</a> <a href="https://www.polaris.one/imprint">Imprint</a>
-          </p>
-          <p>© Polaris School of Quantum. All Rights Reserved.</p>
-        </div>
+      <p class="footer-note">
+        Polaris School of Quantum is operated by Polaris One / Polarstern Education GmbH.<br>
+        We look forward to exploring collaboration opportunities with quantum technology partners.
+      </p>
+      <div class="footer-row">
+        <p>© Polaris School of Quantum. All Rights Reserved.</p>
+        <a href="https://www.polaris.one/imprint">Terms</a>
+        <a href="https://www.polaris.one/imprint">Privacy Policy</a>
+        <a href="https://www.polaris.one/imprint">Imprint</a>
       </div>
     </div>
   </footer>
